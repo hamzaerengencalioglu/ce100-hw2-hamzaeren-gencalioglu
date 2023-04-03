@@ -2,7 +2,7 @@
 ## Team Members
 
 - Hamza Eren Gençalioğlu - 211401027 - hamzaeren_gencalioglu21@erdogan.edu.tr
-- Bayram Kamus - 211401036- bayram_kamus21@erdogan.edu.tr
+- Bayram Kamus - 211401036 - bayram_kamus21@erdogan.edu.tr
 
 
 ## Getting Started
