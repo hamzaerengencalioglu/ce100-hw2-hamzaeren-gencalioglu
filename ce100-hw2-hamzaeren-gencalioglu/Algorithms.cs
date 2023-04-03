@@ -217,7 +217,69 @@ namespace ce100_hw2_algo_lib_cs
             return multiplicationOrder;
         }
 
+        /**
+        * @name Matrix Chain Multiplication Order – Memorized Recursive Multiplication 
+        * @brief Finds the optimal order of matrix multiplication using Memorized Recursive Multiplication.
+        * @param matrixDimensionArray An array of integers representing the dimensions of the matrices to be multiplied.
+        * The dimensions of matrix i is represented by the ith and (i+1)th elements in the array.
+        * @param matrixOrder A reference string that will be populated with the optimal multiplication order.
+        * @param operationCount A reference integer that will be populated with the total number of scalar multiplications needed.
+        * The total number of scalar multiplications needed to multiply the chain of matrices.
+        * @retval Returns 0 if the operation is successful, and -1 otherwise.                  
+        **/
+        public int Mcmrem(int[] matrixDimensionArray, ref string matrixOrder, ref int operationCount)
+        {
+            // obtains the number of matrices.
+            int n = matrixDimensionArray.Length - 1;
+            // Matrices m and s are created for the DP table.
+            int[,] m = new int[n, n];
+            int[,] s = new int[n, n];
+            // The diagonal of the m matrix is set to 0, i.e. it becomes an upper triangular matrix.
+            for (int i = 0; i < n; i++)
+                m[i, i] = 0;
+            // The DP table is filled.
+            for (int l = 2; l <= n; l++)
+            {
+                for (int i = 1; i <= n - l + 1; i++)
+                {
+                    int j = i + l - 1;
+                    m[i - 1, j - 1] = int.MaxValue;
+                    // All matrix orders are compared.
+                    for (int k = i; k <= j - 1; k++)
+                    {
+                        operationCount++;
+                        // Calculate the cost of multiplication.
+                        int q = m[i - 1, k - 1] + m[k, j - 1] + matrixDimensionArray[i - 1] * matrixDimensionArray[k] * matrixDimensionArray[j];
+                        // The optimal matrix order is selected.
+                        if (q < m[i - 1, j - 1])
+                        {
+                            m[i - 1, j - 1] = q;
+                            s[i - 1, j - 1] = k;
+                        }
+                    }
+                }
+            }
+            // The optimal matrix order is obtained.
+            matrixOrder = PrintOptimalParens(s, 0, n - 1);
+            // Matrix multiplication operation number is returned.
+            return 0;
+        }
 
+        // Calculates the optimal matrix order.
+        string PrintOptimalParens(int[,] s, int i, int j)
+        {
+            if (i == j)
+                return "A" + (i + 1);
+            else
+            {
+                string result = "(";
+                // The matrix order is calculated recursively
+                result += PrintOptimalParens(s, i, s[i, j] - 1);
+                result += PrintOptimalParens(s, s[i, j], j);
+                result += ")";
+                return result;
+            }
+        }
     }
 }
 

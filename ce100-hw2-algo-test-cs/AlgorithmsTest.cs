@@ -127,5 +127,48 @@ namespace ce100_hw2_algo_test_cs
             long memoryUsed = GC.GetTotalMemory(true);
             Console.WriteLine($"Memory used: {memoryUsed}");
         }
+
+        [TestMethod]
+        // This method is a unit test for the mcmrem method
+        public void Mcmrem_Test()
+        {
+
+            // Create a stopwatch to measure elapsed time
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            // Define an array of matrix dimensions
+            int[] matrixDimensionArray = new int[] { 30, 35, 15, 5, 10, 20, 25 };
+
+            // Declare a string variable to hold the matrix order result
+            string matrixOrder = "";
+
+            // Declare an integer variable to count the number of operations performed by the algorithm
+            int operationCount = 0;
+
+            // Create an instance of the Class1 class
+            Algorithms algorithms = new Algorithms();
+
+            // Call the mcmrem method and store the result in a variable
+            int result = algorithms.Mcmrem(matrixDimensionArray, ref matrixOrder, ref operationCount);
+
+            // Verify that the result is equal to 0
+            Assert.AreEqual(0, result);
+
+            // Verify that the matrix order string matches the expected value
+            Assert.AreEqual("((A1(A2A3))((A4A5)A6))", matrixOrder);
+
+            // Stop the stopwatch and print the elapsed time
+            stopwatch.Stop();
+            Console.WriteLine($"Time elapsed: {stopwatch.Elapsed}");
+
+            // Get the total memory used by the program and print the result
+            long memoryUsed = GC.GetTotalMemory(true);
+            Console.WriteLine($"Memory used: {memoryUsed}");
+        }
+
+
+
+
     }
 }
