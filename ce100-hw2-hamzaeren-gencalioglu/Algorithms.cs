@@ -106,7 +106,116 @@ namespace ce100_hw2_algo_lib_cs
             }
 
         }
+        /**
+          *@name Matrix Chain Multiplication Order DP
+          *
+          *@brief Finds the optimal order of matrix multiplication using dynamic programming.
+          *
+          *@param matrixDimensionArray The array containing the dimensions of the matrices to be multiplied.
+          *
+          *@param matrixOrder The output string that stores the optimal order of matrix multiplication.
+          *
+          *@param operationCount The output integer that stores the minimum number of operations required for multiplication.
+          *
+          *@param n The number of matrices to be multiplied (derived from the length of matrixDimensionArray).
+          *
+          *@retval Returns 0 if the operation is successful, -1 if there are invalid inputs.
+      **/
 
+
+        public static int McmDP(int[] matrixDimensionArray, ref string matrixOrder, ref int operationCount, bool enableDebug = false)
+        {
+            // Find the number of matrices
+            int n = matrixDimensionArray.Length - 1;
+
+            // Check for invalid inputs.
+            if (matrixDimensionArray == null || n < 2)
+            {
+                // Return -1 for invalid inputs
+                return -1;
+            }
+
+            // Create the two matrices required for matrix multiplication.
+            int[,] m = new int[n + 1, n + 1];  // Stores the minimum number of operations for multiplying sub-chains.
+            int[,] s = new int[n + 1, n + 1];  // Stores the order of matrix multiplication.
+
+            // Initialize the matrices to zero.
+            for (int i = 1; i <= n; i++)
+            {
+                m[i, i] = 0;
+            }
+
+            // Fill the lower triangle
+            for (int L = 2; L <= n; L++)  // Chain length
+            {
+                for (int i = 1; i <= n - L + 1; i++)  // Start matrix
+                {
+                    int j = i + L - 1;  // End matrix
+                    m[i, j] = int.MaxValue;  // Set to maximum value initially.
+                    for (int k = i; k <= j - 1; k++)  // Chain split point
+                    {
+                        int q = m[i, k] + m[k + 1, j] + matrixDimensionArray[i - 1] * matrixDimensionArray[k] * matrixDimensionArray[j];
+                        if (q < m[i, j])  // Update the minimum number of operations and the order of matrix multiplication.
+                        {
+                            m[i, j] = q;
+                            s[i, j] = k;
+                        }
+
+                        if (enableDebug)
+                        {
+                            Console.WriteLine($"i = {i}, j = {j}, k = {k}");
+                            Console.WriteLine($"m[{i},{j}] = {m[i, j]}");
+                            Console.WriteLine($"s[{i},{j}] = {s[i, j]}");
+                            Console.WriteLine();
+                        }
+                    }
+                }
+            }
+
+            // Assign the operation count and matrix multiplication order.
+            operationCount = m[1, n];
+            matrixOrder = PrintOrder(s, 1, n, enableDebug);
+
+            // Return 0 for success.
+            return 0;
+        }
+
+
+        /**
+        *@name PrintOrder
+        *@param s The table that contains the dimensions and multiplication order of the matrix.
+        *@param i The index of the first matrix to be multiplied.
+        *@param j The index of the last matrix to be multiplied.
+        *@retval The multiplication order of the matrices in a string format.
+        **/
+
+
+        /* This code calculates the order of multiplication of a given matrix.
+           The "s" parameter is the table that contains the dimensions and multiplication order of the matrix.
+           The "i" and "j" parameters determine the indices of the matrices to be multiplied.*/
+        private static string PrintOrder(int[,] s, int i, int j, bool enableDebug = false)
+        {
+            if (i == j)
+            {
+                return $"A{i}";
+            }
+
+            string leftMatrixOrder = PrintOrder(s, i, s[i, j], enableDebug);
+            string rightMatrixOrder = PrintOrder(s, s[i, j] + 1, j, enableDebug);
+            string multiplicationOrder = $"({leftMatrixOrder} x {rightMatrixOrder})";
+
+            if (enableDebug)
+            {
+                Console.WriteLine($"i = {i}, j = {j}");
+                Console.WriteLine($"s[{i},{j}] = {s[i, j]}");
+                Console.WriteLine($"leftMatrixOrder = {leftMatrixOrder}");
+                Console.WriteLine($"rightMatrixOrder = {rightMatrixOrder}");
+                Console.WriteLine($"multiplicationOrder = {multiplicationOrder}");
+                Console.WriteLine();
+            }
+
+            return multiplicationOrder;
+        }
 
 
     }

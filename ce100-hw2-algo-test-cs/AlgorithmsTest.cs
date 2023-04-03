@@ -97,6 +97,35 @@ namespace ce100_hw2_algo_test_cs
             long memoryUsed = GC.GetTotalMemory(true);
             Console.WriteLine($"Memory used: {memoryUsed}");
         }
+        [TestMethod]
+        public void Mcmdp_Test()
+        {
+            // Start the stopwatch to measure the elapsed time of the function.
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
+            // Define the dimensions of the input matrices and the expected result.
+            int[] matrixDimensions = new int[] { 30, 35, 15, 5, 10, 20, 25 };
+            int expectedOperationCount = 15125;
+            string expectedMatrixOrder = "((A1 x (A2 x A3)) x ((A4 x A5) x A6))";
+
+            // Call the McmDP function and get the output.
+            string matrixOrder = "";
+            int operationCount = 0;
+            int result = Algorithms.McmDP(matrixDimensions, ref matrixOrder, ref operationCount);
+
+            // Verify that the output is correct.
+            Assert.AreEqual(0, result);
+            Assert.AreEqual(expectedOperationCount, operationCount);
+            Assert.AreEqual(expectedMatrixOrder, matrixOrder);
+
+            // Stop the stopwatch and print the elapsed time.
+            stopwatch.Stop();
+            Console.WriteLine($"Time elapsed: {stopwatch.Elapsed}");
+
+            // Get the total memory usage of the program and print it.
+            long memoryUsed = GC.GetTotalMemory(true);
+            Console.WriteLine($"Memory used: {memoryUsed}");
+        }
     }
 }
