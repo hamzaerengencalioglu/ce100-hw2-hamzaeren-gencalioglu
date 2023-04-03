@@ -1,0 +1,6 @@
+C:\Users\genca\source\repos\ce100-hw2-sln\ce100-hw2-hamzaeren-gencalioglu\bin\Debug\ce100-hw2-hamzaeren-gencalioglu.dll
+C:\Users\genca\source\repos\ce100-hw2-sln\ce100-hw2-hamzaeren-gencalioglu\bin\Debug\ce100-hw2-hamzaeren-gencalioglu.pdb
+C:\Users\genca\source\repos\ce100-hw2-sln\ce100-hw2-hamzaeren-gencalioglu\obj\Debug\ce100-hw2-algo-lib-cs.csproj.AssemblyReference.cache
+C:\Users\genca\source\repos\ce100-hw2-sln\ce100-hw2-hamzaeren-gencalioglu\obj\Debug\ce100-hw2-algo-lib-cs.csproj.CoreCompileInputs.cache
+C:\Users\genca\source\repos\ce100-hw2-sln\ce100-hw2-hamzaeren-gencalioglu\obj\Debug\ce100-hw2-hamzaeren-gencalioglu.dll
+C:\Users\genca\source\repos\ce100-hw2-sln\ce100-hw2-hamzaeren-gencalioglu\obj\Debug\ce100-hw2-hamzaeren-gencalioglu.pdb
