@@ -10,11 +10,11 @@
 To be able to follow the exercises, you are going to need a laptop with Visiual Studio and several Visiual Studio packages installed. The following instruction would work as is for Mac or Ubuntu Linux users, Windows users would need to install and work in the Git BASH terminal.
 
 
-## Run the Project Correctly on Your Computer
+## Run The Project Correctly On Your Computer
 
 You need to open the project by cloning the project from github to your computer. 
 Do not run the project by downloading as zip
 
-## You can clone this repo by typing the following command in gitbash
+## You Can Clone This Repo By Typing The Following Command In Gitbash
 
 git clone https://github.com/hamzaerengencalioglu/ce100-hw2-hamzaeren-gencalioglu.git
