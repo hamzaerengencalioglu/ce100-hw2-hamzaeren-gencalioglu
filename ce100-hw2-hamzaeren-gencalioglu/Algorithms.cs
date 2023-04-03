@@ -401,63 +401,8 @@ namespace ce100_hw2_algo_lib_cs
             return 0;
         }
 
-        /**
-* @name Knapsack Dynamic Programming
-* @brief Solves the 0/1 knapsack problem using dynamic programming.
-* @param weights The array of weights for each item.
-* @param values The array of values for each item.
-* @param selectedIndices A reference to a list of indices for the selected items (output parameter).
-* @param maxBenefit A reference to an integer representing the maximum benefit (output parameter).
-* @param capacity The capacity of the knapsack.
-* @param enableDebug (Optional) Whether to enable debug output (default is false).
-* @retval  Returns 0 if the operation is successful, and -1 otherwise.
-**/
-        public static int KnapsackDP(int[] weights, int[] values, ref List<int> selectedIndices, ref int maxBenefit, int capacity, bool enableDebug = false)
-        {
-            int n = weights.Length;
-            int[,] dp = new int[n + 1, capacity + 1];
-
-            // Initialize the first row and column of the table to 0
-            for (int j = 0; j <= capacity; j++)
-                dp[0, j] = 0;
-
-            for (int i = 1; i <= n; i++)
-            {
-                for (int j = 0; j <= capacity; j++)
-                {
-                    if (weights[i - 1] <= j)
-                        dp[i, j] = Math.Max(dp[i - 1, j], dp[i - 1, j - weights[i - 1]] + values[i - 1]);
-                    else
-                        dp[i, j] = dp[i - 1, j];
-
-                    if (enableDebug)
-                    {
-                        Console.WriteLine($"i = {i}, j = {j}, dp[i,j] = {dp[i, j]}");
-                    }
-                }
-            }
-
-            // Determine the selected items by backtracking through the table
-            int remainingCapacity = capacity;
-            for (int i = n; i > 0 && remainingCapacity > 0; i--)
-            {
-                if (dp[i, remainingCapacity] != dp[i - 1, remainingCapacity])
-                {
-                    selectedIndices.Add(i - 1);
-                    remainingCapacity -= weights[i - 1];
-                }
-
-                if (enableDebug)
-                {
-                    Console.WriteLine($"i = {i}, remainingCapacity = {remainingCapacity}");
-                }
-            }
-            selectedIndices.Reverse();
-
-            // Return the maximum benefit
-            maxBenefit = dp[n, capacity];
-            return 0;
-        }
+       
+    }
 }
 
 
