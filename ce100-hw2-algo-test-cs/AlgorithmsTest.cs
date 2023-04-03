@@ -311,4 +311,5 @@ namespace ce100_hw2_algo_test_cs
             Console.WriteLine($"Memory used: {memoryUsed}");
 
         }
+    }
 }
