@@ -166,7 +166,119 @@ namespace ce100_hw2_algo_test_cs
             long memoryUsed = GC.GetTotalMemory(true);
             Console.WriteLine($"Memory used: {memoryUsed}");
         }
+        [TestMethod]
+        // This method is a unit test for the Lcs method in the best-case scenario
+        public void Lcs_BestCase()
+        {
+            // Create a stopwatch to measure elapsed time
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
+            // Define two input strings that are identical
+            string inputString1 = "sdıfjbdahfbadhfvbaghdvfhgadsvhadvfgjhadvfhgadvfhgadvfhgavdfavdfgavdfhasdjfnköaxzpğcqwporwgdnvdmkndok";
+            string inputString2 = "sdıfjbdahfbadhfvbaghdvfhgadsvhadvfgjhadvfhgadvfhgadvfhgavdfavdfgavdfhasdjfnköaxzpğcqwporwgdnvdmkndok";
+
+            // Define the expected LCS, which is identical to the input strings
+            string expectedLcs = "sdıfjbdahfbadhfvbaghdvfhgadsvhadvfgjhadvfhgadvfhgadvfhgavdfavdfgavdfhasdjfnköaxzpğcqwporwgdnvdmkndok";
+
+            // Define the expected length of the LCS, which is equal to the length of the input strings
+            int expectedLcsLength = 100;
+
+            // Declare variables to hold the output LCS string and its length
+            string outputLcs = null;
+            int outputLcsLength = 0;
+
+            // Call the Lcs method with the input strings and output parameters
+            int result = Algorithms.Lcs(inputString1, inputString2, ref outputLcs, ref outputLcsLength);
+
+            // Verify that the result is equal to 0, indicating a successful execution
+            Assert.AreEqual(0, result);
+
+            // Verify that the output LCS string and its length match the expected values
+            Assert.AreEqual(expectedLcs, outputLcs);
+            Assert.AreEqual(expectedLcsLength, outputLcsLength);
+
+            // Stop the stopwatch and print the elapsed time
+            stopwatch.Stop();
+            Console.WriteLine($"Time elapsed: {stopwatch.Elapsed}");
+
+            // Get the total memory used by the program and print the result
+            long memoryUsed = GC.GetTotalMemory(true);
+            Console.WriteLine($"Memory used: {memoryUsed}");
+        }
+
+
+        [TestMethod]
+        // This method is a unit test for the Lcs method in the average-case scenario
+        public void Lcs_AverageCase()
+        {
+            // Create a stopwatch to measure elapsed time
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            // Define two input strings that are identical
+            string inputString1 = "hjklklqwertyuıopqweqwertyuıopğüasdfghjklşizxcvbnmöçqwertyuıopğüasdfghrtyuıopğüasdfghjklğüasasddfghjk";
+            string inputString2 = "şişizxmözxcvşizxşizxcvbnmöcvbnşqwertyuıopğüasdfghjklşizxcvbnmöçqwertyuıopğüasdfghnmncvncbncbnbnbnmcö";
+            // Define the expected LCS, which is identical to the input strings
+            string expectedLcs = "qwertyuıopğüasdfghjklşizxcvbnmöçqwertyuıopğüasdfgh";
+            // Define the expected length of the LCS, which is equal to the length of the input strings
+            int expectedLcsLength = 50;
+
+            // Declare variables to hold the output LCS string and its length
+            string outputLcs = null;
+            int outputLcsLength = 0;
+            int result = Algorithms.Lcs(inputString1, inputString2, ref outputLcs, ref outputLcsLength);
+
+            // Call the Lcs method with the input strings and output parameters
+            Assert.AreEqual(0, result);
+            // Verify that the output LCS string and its length match the expected values
+            Assert.AreEqual(expectedLcs, outputLcs);
+            Assert.AreEqual(expectedLcsLength, outputLcsLength);
+
+            // Stop the stopwatch and print the elapsed time
+            stopwatch.Stop();
+            Console.WriteLine($"Time elapsed: {stopwatch.Elapsed}");
+            // Get the total memory used by the program and print the result
+            long memoryUsed = GC.GetTotalMemory(true);
+            Console.WriteLine($"Memory used: {memoryUsed}");
+        }
+        [TestMethod]
+        // This method is a unit test for the Lcs method in the worst-case scenario
+        public void Lcs_WorstCase()
+        {
+            // Create a stopwatch to measure elapsed time
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+
+            // Define two input strings that are identical
+            string inputString1 = "qwertyuıopğüasdfgüyeıoqrotrfddweıoeğperyfgfytqwewıewepogdfdfduyerurpeprperepdfsdfqrwtqwgsdseğeofğefo";
+            string inputString2 = "hjnmzxnckvşbilvbjvnşjhcnmzcjzchlcviilbmhxxkcmxvjxvnxvjkxvnxklxişzxxmcncxvhjlxnxcişlkjmvnöçövçşşvöiöv";
+            // Define the expected LCS, which is identical to the input strings
+            string expectedLcs = "";
+            // Define the expected length of the LCS, which is equal to the length of the input strings
+            int expectedLcsLength = 0;
+
+            // Declare variables to hold the output LCS string and its length
+            string outputLcs = null;
+            int outputLcsLength = 0;
+            int result = Algorithms.Lcs(inputString1, inputString2, ref outputLcs, ref outputLcsLength);
+
+            // Call the Lcs method with the input strings and output parameters
+            Assert.AreEqual(0, result);
+
+            // Verify that the output LCS string and its length match the expected values
+            Assert.AreEqual(expectedLcs, outputLcs);
+            Assert.AreEqual(expectedLcsLength, outputLcsLength);
+
+            // Stop the stopwatch and print the elapsed time
+            stopwatch.Stop();
+            Console.WriteLine($"Time elapsed: {stopwatch.Elapsed}");
+
+            // Get the total memory used by the program and print the result
+            long memoryUsed = GC.GetTotalMemory(true);
+            Console.WriteLine($"Memory used: {memoryUsed}");
+        }
 
 
 

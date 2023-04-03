@@ -280,6 +280,68 @@ namespace ce100_hw2_algo_lib_cs
                 return result;
             }
         }
+        /**
+        * @name Longest Common Subsequence
+        * @brief finds the length of the longest common subsequence in two different input strings and the characters belonging to this subsequence.
+        * @param inputString1: the first input string to compare
+        * @param inputString2: the second input string to compare
+        * @param outputLcslength: a reference to an integer variable that will contain the length of the LCS if found
+        * @param outputLcs: a reference to a stringer variable that will contains the LCS if found
+        * @retval: 0 if the function completes successfully, -1 if no LCS is found
+        **/
+
+        public static int Lcs(string inputString1, string inputString2, ref string outputLcs, ref int outputLcslength)
+        {
+            // Define a 2D array one element larger than the length of the two input strings.
+            int[,] lengths = new int[inputString1.Length + 1, inputString2.Length + 1];
+            // Comparison is made for each pair of characters.
+            for (int i = 0; i < inputString1.Length; i++)
+            {
+
+                for (int j = 0; j < inputString2.Length; j++)
+                {
+                    // code that increases the length by one if the characters are the same.
+                    if (inputString1[i] == inputString2[j])
+                        lengths[i + 1, j + 1] = lengths[i, j] + 1;
+                    // code that selects the longer of the LCS of the two previous characters if the characters are different.
+                    else
+                        lengths[i + 1, j + 1] = Math.Max(lengths[i + 1, j], lengths[i, j + 1]);
+                }
+            }
+
+            // The length of the LCS is stored in the lower right corner of the lengths array.
+            int lcsLength = lengths[inputString1.Length, inputString2.Length];
+            // Returns - 1 if lcs length is greater than 100,
+            if (lcsLength > 100)
+                return -1;
+
+            // is calculated by going backwards
+            char[] lcs = new char[lcsLength];
+            int index = lcsLength - 1;
+            int p = inputString1.Length, q = inputString2.Length;
+            while (index >= 0)
+            {
+                // If two characters are equal, this character is part of the LCS.
+                if (inputString1[p - 1] == inputString2[q - 1])
+                {
+                    lcs[index] = inputString1[p - 1];
+                    p--;
+                    q--;
+                    index--;
+                }
+                // If the characters are different, the code that chooses the one that is longer than the LCS of the previous characters in the lengths array.
+                else if (lengths[p - 1, q] > lengths[p, q - 1])
+                    p--;
+                else
+                    q--;
+            }
+
+            // The calculated LCS string and its length are assigned as output parameters of the function.
+            outputLcs = new string(lcs);
+            outputLcslength = lcsLength;
+            // When the function completes successfully, the value 0 is returned.
+            return 0;
+        }
     }
 }
 
