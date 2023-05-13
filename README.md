@@ -9,9 +9,6 @@
 
 To be able to follow the exercises, you are going to need a laptop with Visiual Studio and several Visiual Studio packages installed. The following instruction would work as is for Mac or Ubuntu Linux users, Windows users would need to install and work in the Git BASH terminal.
 
-## Run The Project Correctly On Git Actions
-
-You can click on Git Actions and run the project
 
 ## Run The Project Correctly On Your Computer
 
